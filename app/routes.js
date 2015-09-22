@@ -2,7 +2,7 @@ module.exports = function(app){
 	//GET
 	app
 	.get('/',function(req,res){
-		res.sendFile('Index.html',{root:'/public/'});
+		res.sendFile('./public/index.html');
 	})
 	
 	.get('/data',function(req,res){
