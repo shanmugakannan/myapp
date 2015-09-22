@@ -13,6 +13,7 @@
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
     </style>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>	
 <script src="/socket.io/socket.io.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="public/js/app.js"></script>
@@ -20,13 +21,22 @@
 <script src="public/js/controllers.js"></script>
 <script>
   var socket = io();
+socket.on('emitting', function (data) {
+            console.log(data);
+            socket.emit('received', 'msg from client');
+        });
+  $('form').submit(function(){
+    socket.emit('received', 'received');
+    $('#m').val('');
+    return false;
+  });
 </script>
 <body ng-controller ="dataCtrl">
-<div>
+<!-- <div>
 <ul ng-repeat = "name in data">
 <li><div ng-repeat="(key, value) in name">{{value}}</div></li>
 </ul> 
-</div>
+</div> -->
 <div>
 <ul id="messages"></ul>
     <form action="">

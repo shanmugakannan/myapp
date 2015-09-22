@@ -21,7 +21,10 @@ var io = socketio.listen(server);
 
 //Chat client connection manager
 io.on('connection', function(socket){
-  console.log('a user connected');
+	 socket.emit('emitting', 'msg from server!');
+  socket.on('received', function(msg){
+    console.log('message: ' + msg);
+  });
 });
 
 // Console.log                  
